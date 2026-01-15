@@ -1,0 +1,25 @@
+import java.util.*;
+
+class CycleDetect {
+    static Map<Integer,List<Integer>> g = new HashMap<>();
+    static Set<Integer> visited = new HashSet<>();
+    static Set<Integer> stack = new HashSet<>();
+
+    static boolean dfs(int v){
+        visited.add(v);
+        stack.add(v);
+        for(int n : g.getOrDefault(v,new ArrayList<>())){
+            if(!visited.contains(n) && dfs(n)) return true;
+            if(stack.contains(n)) return true;
+        }
+        stack.remove(v);
+        return false;
+    }
+
+    public static void main(String[] args) {
+        g.put(0,List.of(1));
+        g.put(1,List.of(2));
+        g.put(2,List.of(0));
+        System.out.println(dfs(0));
+    }
+}
