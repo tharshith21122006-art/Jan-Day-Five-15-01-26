@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Bipartite {
+    public static void main(String[] args) {
+        int[][] g={{1},{0,2},{1}};
+        int[] col=new int[3];
+        Arrays.fill(col,-1);
+
+        Queue<Integer> q=new LinkedList<>();
+        q.add(0); col[0]=0;
+
+        while(!q.isEmpty()){
+            int u=q.poll();
+            for(int v:g[u]){
+                if(col[v]==-1){
+                    col[v]=1-col[u];
+                    q.add(v);
+                }
+                else if(col[v]==col[u]){
+                    System.out.println(false);
+                    return;
+                }
+            }
+        }
+        System.out.println(true);
+    }
+}
