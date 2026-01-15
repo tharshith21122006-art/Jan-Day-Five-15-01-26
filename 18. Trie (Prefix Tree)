@@ -1,0 +1,23 @@
+class Trie {
+    static class Node {
+        Node[] c=new Node[26];
+        boolean end;
+    }
+    static Node root=new Node();
+
+    static void insert(String s){
+        Node cur=root;
+        for(char ch:s.toCharArray()){
+            int i=ch-'a';
+            if(cur.c[i]==null) cur.c[i]=new Node();
+            cur=cur.c[i];
+        }
+        cur.end=true;
+    }
+
+    public static void main(String[] args) {
+        insert("ai");
+        insert("aiml");
+        System.out.println(root.c['a'-'a']!=null);
+    }
+}
