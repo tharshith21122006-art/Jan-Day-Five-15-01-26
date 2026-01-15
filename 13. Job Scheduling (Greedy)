@@ -1,0 +1,17 @@
+import java.util.*;
+
+class Job {
+    char id; int d,p;
+    Job(char i,int d,int p){id=i;this.d=d;this.p=p;}
+}
+
+class JobSchedule {
+    public static void main(String[] args) {
+        Job[] j={new Job('A',2,100),new Job('B',1,19)};
+        Arrays.sort(j,(a,b)->b.p-a.p);
+        int time=0,profit=0;
+        for(Job x:j)
+            if(time<x.d){time++;profit+=x.p;}
+        System.out.println(profit);
+    }
+}
